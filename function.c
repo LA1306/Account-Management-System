@@ -1,21 +1,70 @@
-#include <function.h>
+#include <stdio.h>
+#include <string.h>
+
+typedef struct
+{
+	int	iAccNumber;
+	char	cAccName[20];
+	char	cAccType[10];
+} sInfo;
 
 int AccAdd()
 {
-	FILE *pFile;
-	sInfo sAdd;
+	FILE *fpLog;
+	sInfo sAdd, sExist;
+	int iAccTypeIndex;
+	char cQuit = '0';
 
-	puts("Enter today's date (mm/dd/yyyy):");
-	scanf("%d/%d/%d", sAdd.iAddMonth, sAdd.iAddDay, sAdd.iAddYear);
+//	puts("Enter today's date (mm/dd/yyyy):");
+//	scanf("%d/%d/%d", sAdd.iAddMonth, sAdd.iAddDay, sAdd.iAddYear);
+
+	puts("Enter the account number (6 number):");
+	scanf("%d", &sAdd.iAccNumber);
+	while(fscanf(fpLog, "%d %s %s\n", &sExist.iAccNumber, sExist.cAccName, sExist.cAccType) != EOF)
+	{
+		if(sAdd.iAccNumber == sExist.iAccNumber)
+		{
+			puts("Account already exist! [Q]");
+			while (cQuit != 'Q')
+			{
+				scanf("%c", &cQuit);
+			}
+			return 0;
+		}
+	}
+
 	puts("Enter the name:");
-	scanf("%s", sAdd.cName);
-	puts("Enter account number:");
-	scanf("%s", sAdd.cAccNumber);
-	puts("Enter account type:
-		\n\t 1: Platium
-		\n\t 2: Gold
-		\n\t 3: Silver");
-	scanf("%d", &sAdd.iAccType);
+	scanf("%s", sAdd.cAccName);
+	
+	puts("Account type:\n\t 1: Platium\n\t 2: Gold\n\t 3: Silver \nSelect account type:");
+	scanf("%d", &iAccTypeIndex);
+	switch (iAccTypeIndex)
+	{
+		case 1:	strcpy(sAdd.cAccType, "Platium");
+			break;
+		case 2: strcpy(sAdd.cAccType, "Gold");
+			break;
+		case 3: strcpy(sAdd.cAccType, "Silver");
+			break;
+		default:
+			break;
+	}
 
+	fprintf(fpLog, "%d %s %s\n", sAdd.iAccNumber, sAdd.cAccName, sAdd.cAccType);
+	fclose(fpLog);
+	puts("Account created successfully! [Q]");
+	while (cQuit != 'Q')
+	{
+		scanf("%c", &cQuit);
+	}
 
+	return 0;
+}
+
+int main()
+{
+	puts("hi!\n");
+	AccAdd();
+	
+	return 0;
 }

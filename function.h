@@ -2,9 +2,8 @@
 
 typedef struct
 {
-	char cName[20];
-	char cAccNumber[10];
-	char cAccType[10];
-	int iAddDay, iAddMonth, iAddYear;
+	int 	iAccNumber;
+	char	cAccName[20];
+	char 	cAccType[10];
+//	int 	iAddDay, iAddMonth, iAddYear;
 } sInfo;
-
