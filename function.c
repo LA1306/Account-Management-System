@@ -18,7 +18,7 @@ int AccAdd()
 //	puts("Enter today's date (mm/dd/yyyy):");
 //	scanf("%d/%d/%d", sAdd.iAddMonth, sAdd.iAddDay, sAdd.iAddYear);
 
-	puts("Enter the account number (6 number):");
+/*	puts("Enter the account number (6 number):");
 	scanf("%d", &sAdd.iAccNumber);
 	while(fscanf(fpLog, "%d %s %s\n", &sExist.iAccNumber, sExist.cAccName, sExist.cAccType) != EOF)
 	{
@@ -57,7 +57,7 @@ int AccAdd()
 	{
 		scanf("%c", &cQuit);
 	}
-
+*/
 	return 0;
 }
 
