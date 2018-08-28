@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct
@@ -37,7 +38,7 @@ int AccAdd()
 //	puts ("Enter the name:");	// puts: tu dong xuong hang
 	printf ("Enter the name: ");
 	scanf ("%s", sAdd.cAccName);
-	
+
 	printf ("Account type:\n\t 1: Platium\n\t 2: Gold\n\t 3: Silver \nSelect account type: ");
 	scanf ("%d", &iAccTypeIndex);
 	switch (iAccTypeIndex)
@@ -63,9 +64,60 @@ int AccAdd()
 	return 0;
 }
 
+int iScanQuit ()
+{
+	char iQuit = '0';
+
+	printf ("[Q] ");
+
+	while (iQuit != 'q')
+	{
+		scanf ("%c", &iQuit);
+	}
+	return 0;
+}
+
+int iViewAcc ()
+{
+	S_INFO VIEW;
+	int	iAccNumberTemp;
+//	char	cQuit = '0';
+
+	FILE *fpLog;
+	fpLog = fopen ("Log.txt", "a+");
+
+	system ("clear");
+	puts ("VIEW ACCOUNT INFO FUNCTION");
+	printf ("Enter the account number: ");
+	scanf ("%d", &iAccNumberTemp);
+
+	while (fscanf (fpLog, "%d %s %s\n", &VIEW.iAccNumber, VIEW.cAccName, VIEW.cAccType) != EOF)
+	{
+		if (iAccNumberTemp == VIEW.iAccNumber)
+		{
+			printf ("Name: %s\n", VIEW.cAccName);
+			printf ("Type: %s\n", VIEW.cAccType);
+/*			while (cQuit != 'q')
+			{
+				scanf ("%c", &cQuit);
+			{
+*/			iScanQuit();
+
+			return 0;
+		}
+	}
+
+	fclose (fpLog);
+	puts ("Account not found!");
+	iScanQuit();
+
+	return 0;
+}
+
 int main()
 {
-	AccAdd();
+//	AccAdd();
+	iViewAcc();
 
 	return 0;
 }
