@@ -86,7 +86,7 @@ int iViewAcc ()
 	FILE *fpLog;
 	fpLog = fopen ("Log.txt", "a+");
 
-	system ("clear");
+//	system ("clear");
 	puts ("VIEW ACCOUNT INFO FUNCTION");
 	printf ("Enter the account number: ");
 	scanf ("%d", &iAccNumberTemp);
